@@ -153,7 +153,7 @@ end
 -- ON LOAD FUNCTIONS
 -- ***********************************
 -- ON LOAD: Main frame
-function HeadCount:HeadCountFrame_Load()
+function HeadCount:HeadCountFrame_Load(self)
 
 end
 
@@ -171,13 +171,13 @@ function HeadCount:HeadCountFrameLootManagementPopup_Load(self)
 end
 
 -- ON LOAD: Confirm frame
-function HeadCount:HeadCountFrameConfirm_Load()
+function HeadCount:HeadCountFrameConfirm_Load(self)
 	HeadCountFrameConfirmConfirmButton:SetText(L["Remove"])
 	HeadCountFrameConfirmCancelButton:SetText(L["Cancel"])
 end
 
 -- ON LOAD: Export frame
-function HeadCount:HeadCountFrameExport_Load()
+function HeadCount:HeadCountFrameExport_Load(self)
 	HeadCountFrameExportRefreshButton:SetText(L["Refresh"])
 	HeadCountFrameExportCloseButton:SetText(L["Close"])
 end
@@ -193,7 +193,7 @@ function HeadCount:HeadCountFrameLootManagementTemplate_Load(self)
 end
 
 -- ON LOAD: Raid announcement frame
-function HeadCount:HeadCountFrameAnnouncement_Load()
+function HeadCount:HeadCountFrameAnnouncement_Load(self)
 	HeadCountFrameAnnouncementTitleString:SetText(L["Raid announcement"])
 	HeadCountFrameAnnouncementTypeLabel:SetText(L["Type"] .. ": ")
 	HeadCountFrameAnnouncementChannelLabel:SetText(L["Channel"] .. ": ")
@@ -202,32 +202,32 @@ function HeadCount:HeadCountFrameAnnouncement_Load()
 end
 
 -- ON LOAD: Main frame
-function HeadCount:HeadCountFrame_Load()
+function HeadCount:HeadCountFrame_Load(self)
 	HeadCountFrame.isRaidSelected = false
 	HeadCountFrame.selectedRaidId = 0
 	HeadCountFrame.isDialogDisplayed = false
 end
 
 -- ON LOAD: Raid history frame
-function HeadCount:HeadCountFrameRaidHistory_Load()
+function HeadCount:HeadCountFrameRaidHistory_Load(self)
 	HeadCountFrameRaidHistory:SetBackdropBorderColor(0.8, 0.8, 0.8, 0.8)
 	HeadCountFrameRaidHistoryTitleString:SetText(string.format(L["info.raidhistory"], 0))
 end
 
 -- ON LOAD: Raid history content frame
-function HeadCount:HeadCountFrameRaidHistoryContent_Load()
+function HeadCount:HeadCountFrameRaidHistoryContent_Load(self)
 
 end
 
 -- ON LOAD: Content frame
-function HeadCount:HeadCountFrameContent_Load()
+function HeadCount:HeadCountFrameContent_Load(self)
 	HeadCountFrameContent:SetBackdropBorderColor(0.8, 0.8, 0.8, 0.8)
 	HeadCountFrame.contentType = content["raid"]
 	HeadCountFrameContentTitleString:Hide()
 end
 
 -- ON LOAD: Raid members
-function HeadCount:HeadCountFrameContentMembers_Load()
+function HeadCount:HeadCountFrameContentMembers_Load(self)
 	HeadCountFrameContentMembersNameButtonText:SetText(L["Name"])
 	HeadCountFrameContentMembersStartTimeButtonText:SetText(L["Start"])
 	HeadCountFrameContentMembersEndTimeButtonText:SetText(L["End"])
@@ -238,12 +238,12 @@ function HeadCount:HeadCountFrameContentMembers_Load()
 end
 
 -- ON LOAD: Player information
-function HeadCount:HeadCountFrameContentPlayer_Load()
+function HeadCount:HeadCountFrameContentPlayer_Load(self)
 	HeadCountFrameContentPlayerBackButtonText:SetText(L["Go back"])
 end
 
 -- ON LOAD: Wait list
-function HeadCount:HeadCountFrameContentWaitList_Load()
+function HeadCount:HeadCountFrameContentWaitList_Load(self)
 	HeadCountFrameContentWaitListNameButtonText:SetText(L["Name"])
 	HeadCountFrameContentWaitListTimeButtonText:SetText(L["Time"])
 	HeadCountFrameContentWaitListNoteButtonText:SetText(L["Note"])
@@ -253,19 +253,19 @@ function HeadCount:HeadCountFrameContentWaitList_Load()
 end
 
 -- ON LOAD: Raid bosses
-function HeadCount:HeadCountFrameContentBoss_Load()
+function HeadCount:HeadCountFrameContentBoss_Load(self)
 	HeadCountFrameContentBossTimeButtonText:SetText(L["Time"])
 	HeadCountFrameContentBossMembersButtonText:SetText(L["Members"])
 	HeadCountFrameContentBossNameButtonText:SetText(L["Name"])
 end
 
 -- ON LOAD: Snapshot information
-function HeadCount:HeadCountFrameContentSnapshot_Load()
+function HeadCount:HeadCountFrameContentSnapshot_Load(self)
 	HeadCountFrameContentSnapshotBackButtonText:SetText(L["Go back"])
 end
 
 -- ON LOAD: Title head
-function HeadCount:HeadCountFrameTitleHeader_Load()
+function HeadCount:HeadCountFrameTitleHeader_Load(self)
 	HeadCountFrameTitleHeaderString:SetText(HeadCount.TITLE)
 end
 
@@ -1231,18 +1231,18 @@ end
 -- ON CLICK FUNCTIONS
 -- ***********************************
 -- ON CLICK: Frame close button
-function HeadCount:HeadCountFrameTitleCloseButton_Click()
+function HeadCount:HeadCountFrameTitleCloseButton_Click(self)
 	-- Main close button has been clicked
 	HeadCount:HideUserInterface()
 end
 
 -- ON CLICK: Announce button
-function HeadCount:HeadCountFrameRaidHistoryAnnounceButton_Click()
+function HeadCount:HeadCountFrameRaidHistoryAnnounceButton_Click(self)
 	HeadCount:HeadCountFrameAnnouncement_Show()
 end
 
 -- ON CLICK: End raid button
-function HeadCount:HeadCountFrameRaidHistoryEndRaidButton_Click()
+function HeadCount:HeadCountFrameRaidHistoryEndRaidButton_Click(self)
 	local currentRaidId = HeadCount:getRaidTracker():retrieveCurrentRaidId()
 
 	HeadCountFrameConfirm.description = ""
@@ -1250,7 +1250,7 @@ function HeadCount:HeadCountFrameRaidHistoryEndRaidButton_Click()
 end
 
 -- ON CLICK: Remove all raids button
-function HeadCount:HeadCountFrameRaidHistoryRemoveAllButton_Click()
+function HeadCount:HeadCountFrameRaidHistoryRemoveAllButton_Click(self)
 	HeadCountFrameConfirm.description = ""
 	HeadCount:HeadCountFrameConfirm_Show("removeall", 0)
 end
@@ -1291,7 +1291,7 @@ function HeadCount:HeadCountFrameRaidHistoryContentTemplateDeleteButton_Click(se
 end
 
 -- ON CLICK: Raid members button
-function HeadCount:HeadCountFrameContentMembersButton_Click()
+function HeadCount:HeadCountFrameContentMembersButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["raid"]
@@ -1299,7 +1299,7 @@ function HeadCount:HeadCountFrameContentMembersButton_Click()
 end
 
 -- ON CLICK: Raid wait list button
-function HeadCount:HeadCountFrameContentWaitListButton_Click()
+function HeadCount:HeadCountFrameContentWaitListButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["waitlist"]
@@ -1307,7 +1307,7 @@ function HeadCount:HeadCountFrameContentWaitListButton_Click()
 end
 
 -- ON CLICK: Raid boss kills button
-function HeadCount:HeadCountFrameContentBossButton_Click()
+function HeadCount:HeadCountFrameContentBossButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["boss"]
@@ -1315,7 +1315,7 @@ function HeadCount:HeadCountFrameContentBossButton_Click()
 end
 
 -- ON CLICK: Raid loot button
-function HeadCount:HeadCountFrameContentLootButton_Click()
+function HeadCount:HeadCountFrameContentLootButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["loot"]
@@ -1323,7 +1323,7 @@ function HeadCount:HeadCountFrameContentLootButton_Click()
 end
 
 -- ON CLICK: Player go back button
-function HeadCount:HeadCountFrameContentPlayerBackButton_Click()
+function HeadCount:HeadCountFrameContentPlayerBackButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["raid"]
@@ -1331,7 +1331,7 @@ function HeadCount:HeadCountFrameContentPlayerBackButton_Click()
 end
 
 -- ON CLICK: Snapshot go back button
-function HeadCount:HeadCountFrameContentSnapshotBackButton_Click()
+function HeadCount:HeadCountFrameContentSnapshotBackButton_Click(self)
 	HeadCount:DisableModalFrame()
 
 	HeadCountFrame.contentType = content["boss"]
@@ -1339,7 +1339,7 @@ function HeadCount:HeadCountFrameContentSnapshotBackButton_Click()
 end
 
 -- ON CLICK: Raid member name sort button
-function HeadCount:HeadCountFrameContentMembersNameButton_Click()
+function HeadCount:HeadCountFrameContentMembersNameButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["Name"] == HeadCountFrameContentMembers.sortType) then
@@ -1354,7 +1354,7 @@ function HeadCount:HeadCountFrameContentMembersNameButton_Click()
 end
 
 -- ON CLICK: Raid member start time sort button
-function HeadCount:HeadCountFrameContentMembersStartTimeButton_Click()
+function HeadCount:HeadCountFrameContentMembersStartTimeButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["Start"] == HeadCountFrameContentMembers.sortType) then
@@ -1369,7 +1369,7 @@ function HeadCount:HeadCountFrameContentMembersStartTimeButton_Click()
 end
 
 -- ON CLICK: Raid member end time sort button
-function HeadCount:HeadCountFrameContentMembersEndTimeButton_Click()
+function HeadCount:HeadCountFrameContentMembersEndTimeButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["End"] == HeadCountFrameContentMembers.sortType) then
@@ -1384,7 +1384,7 @@ function HeadCount:HeadCountFrameContentMembersEndTimeButton_Click()
 end
 
 -- ON CLICK: Raid member total time sort button
-function HeadCount:HeadCountFrameContentMembersTotalTimeButton_Click()
+function HeadCount:HeadCountFrameContentMembersTotalTimeButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["Total"] == HeadCountFrameContentMembers.sortType) then
@@ -1416,7 +1416,7 @@ function HeadCount:HeadCountFrameContentMembersTemplateDeleteButton_Click(self)
 end
 
 -- ON CLICK: Raid wait list members name sort button
-function HeadCount:HeadCountFrameContentWaitListNameButton_Click()
+function HeadCount:HeadCountFrameContentWaitListNameButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["Name"] == HeadCountFrameContentWaitList.sortType) then
@@ -1431,7 +1431,7 @@ function HeadCount:HeadCountFrameContentWaitListNameButton_Click()
 end
 
 -- ON CLICK: Raid wait list members time sort button
-function HeadCount:HeadCountFrameContentWaitListTimeButton_Click()
+function HeadCount:HeadCountFrameContentWaitListTimeButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["Waitlist"] == HeadCountFrameContentWaitList.sortType) then
@@ -1446,7 +1446,7 @@ function HeadCount:HeadCountFrameContentWaitListTimeButton_Click()
 end
 
 -- ON CLICK: Raid wait list members note sort button
-function HeadCount:HeadCountFrameContentWaitListNoteButton_Click()
+function HeadCount:HeadCountFrameContentWaitListNoteButton_Click(self)
 	local raidMemberSort = HeadCount:getRAID_MEMBER_SORT()
 
 	if (raidMemberSort["WaitlistNote"] == HeadCountFrameContentWaitList.sortType) then
@@ -1540,7 +1540,7 @@ function HeadCount:HeadCountFrameContentLootTemplateDeleteButton_Click(self)
 end
 
 -- ON CLICK: Confirm button
-function HeadCount:HeadCountFrameConfirmConfirmButton_Click()
+function HeadCount:HeadCountFrameConfirmConfirmButton_Click(self)
 	if (confirmType["raid"] == HeadCountFrameConfirm.frameType) then
 		-- remove raid
 		if (HeadCountFrame.isLootPopupDisplayed) then
@@ -1598,7 +1598,7 @@ function HeadCount:HeadCountFrameConfirmConfirmButton_Click()
 end
 
 -- ON CLICK: Cancel button
-function HeadCount:HeadCountFrameConfirmCancelButton_Click()
+function HeadCount:HeadCountFrameConfirmCancelButton_Click(self)
 	HeadCount:DisableModalFrame()
 end
 
@@ -1612,12 +1612,12 @@ function HeadCount:HeadCountFrameExportRefreshButton_Click(self)
 end
 
 -- ON CLICK: Export close button
-function HeadCount:HeadCountFrameExportCloseButton_Click()
+function HeadCount:HeadCountFrameExportCloseButton_Click(self)
 	HeadCount:DisableModalFrame()
 end
 
 -- ON CLICK: Loot management save button
-function HeadCount:HeadCountFrameLootManagementSaveButton_Click()
+function HeadCount:HeadCountFrameLootManagementSaveButton_Click(self)
 	local looterString = HeadCountFrameLootManagementLooterEditBox:GetText()
 	local sourceString = HeadCountFrameLootManagementSourceEditBox:GetText()
 	local costString = HeadCountFrameLootManagementCostEditBox:GetText()
@@ -1654,12 +1654,12 @@ function HeadCount:HeadCountFrameLootManagementSaveButton_Click()
 end
 
 -- ON CLICK: Loot management cancel button
-function HeadCount:HeadCountFrameLootManagementCancelButton_Click()
+function HeadCount:HeadCountFrameLootManagementCancelButton_Click(self)
 	HeadCount:DisableModalFrame()
 end
 
 -- ON CLICK: Loot management looter button
-function HeadCount:HeadCountFrameLootManagementLooterButton_Click()
+function HeadCount:HeadCountFrameLootManagementLooterButton_Click(self)
 	local looterButton = _G["HeadCountFrameLootManagementLooterButton"]
 	if (dewdrop:IsOpen(looterButton)) then
 		dewdrop:Close()
@@ -1676,17 +1676,17 @@ function HeadCount:HeadCountFrameLootManagementLooterButton_Click()
 end
 
 -- ON CLICK: Loot management bank button
-function HeadCount:HeadCountFrameLootManagementBankButton_Click()
+function HeadCount:HeadCountFrameLootManagementBankButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementLooterButton_Set(L["Bank"])
 end
 
 -- ON CLICK: Loot management disenchanted button
-function HeadCount:HeadCountFrameLootManagementDisenchantedButton_Click()
+function HeadCount:HeadCountFrameLootManagementDisenchantedButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementLooterButton_Set(L["Disenchanted"])
 end
 
 -- ON CLICK: Loot management offspec button
-function HeadCount:HeadCountFrameLootManagementOffspecButton_Click()
+function HeadCount:HeadCountFrameLootManagementOffspecButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementLooterButton_Set(L["Offspec"])
 end
 
@@ -1699,7 +1699,7 @@ function HeadCount:HeadCountFrameLootManagementLooterButton_Set(looter)
 end
 
 -- ON CLICK: Loot management source button
-function HeadCount:HeadCountFrameLootManagementSourceButton_Click()
+function HeadCount:HeadCountFrameLootManagementSourceButton_Click(self)
 	local sourceButton = _G["HeadCountFrameLootManagementSourceButton"]
 	if (dewdrop:IsOpen(sourceButton)) then
 		dewdrop:Close()
@@ -1724,7 +1724,7 @@ function HeadCount:HeadCountFrameLootManagementSourceButton_Set(source)
 end
 
 -- ON CLICK: Loot management popup save button
-function HeadCount:HeadCountFrameLootManagementPopupSaveButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupSaveButton_Click(self)
 	local looterString = HeadCountFrameLootManagementPopupLooterEditBox:GetText()
 	local sourceString = HeadCountFrameLootManagementPopupSourceEditBox:GetText()
 	local costString = HeadCountFrameLootManagementPopupCostEditBox:GetText()
@@ -1767,7 +1767,7 @@ function HeadCount:HeadCountFrameLootManagementPopupSaveButton_Click()
 end
 
 -- ON CLICK: Loot management popup cancel button
-function HeadCount:HeadCountFrameLootManagementPopupCancelButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupCancelButton_Click(self)
 	HeadCountFrame.isLootPopupDisplayed = false
 	HeadCountFrameLootManagementPopup:Hide()
 
@@ -1805,7 +1805,7 @@ function HeadCount:HeadCountFrameLootManagementPopup_ManageQueue()
 end
 
 -- ON CLICK: Loot management popup looter button
-function HeadCount:HeadCountFrameLootManagementPopupLooterButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupLooterButton_Click(self)
 	local looterButton = _G["HeadCountFrameLootManagementPopupLooterButton"]
 	if (dewdrop:IsOpen(looterButton)) then
 		dewdrop:Close()
@@ -1822,17 +1822,17 @@ function HeadCount:HeadCountFrameLootManagementPopupLooterButton_Click()
 end
 
 -- ON CLICK: Loot management popup bank button
-function HeadCount:HeadCountFrameLootManagementPopupBankButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupBankButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementPopupLooterButton_Set(L["Bank"])
 end
 
 -- ON CLICK: Loot management popup disenchanted button
-function HeadCount:HeadCountFrameLootManagementPopupDisenchantedButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupDisenchantedButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementPopupLooterButton_Set(L["Disenchanted"])
 end
 
 -- ON CLICK: Loot management popup offspec button
-function HeadCount:HeadCountFrameLootManagementPopupOffspecButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupOffspecButton_Click(self)
 	HeadCount:HeadCountFrameLootManagementPopupLooterButton_Set(L["Offspec"])
 end
 
@@ -1845,7 +1845,7 @@ function HeadCount:HeadCountFrameLootManagementPopupLooterButton_Set(looter)
 end
 
 -- ON CLICK: Loot management popup source button
-function HeadCount:HeadCountFrameLootManagementPopupSourceButton_Click()
+function HeadCount:HeadCountFrameLootManagementPopupSourceButton_Click(self)
 	local sourceButton = _G["HeadCountFrameLootManagementPopupSourceButton"]
 	if (dewdrop:IsOpen(sourceButton)) then
 		dewdrop:Close()
@@ -1870,7 +1870,7 @@ function HeadCount:HeadCountFrameLootManagementPopupSourceButton_Set(source)
 end
 
 -- ON CLICK: Raid announcement type button
-function HeadCount:HeadCountFrameAnnouncementTypeButton_Click()
+function HeadCount:HeadCountFrameAnnouncementTypeButton_Click(self)
 	local announcementTypeButton = HeadCountFrameAnnouncementTypeButton
 	if (dewdrop:IsOpen(announcementTypeButton)) then
 		dewdrop:Close()
@@ -1887,7 +1887,7 @@ function HeadCount:HeadCountFrameAnnouncementTypeButton_Click()
 end
 
 -- ON CLICK: Raid announcement type button
-function HeadCount:HeadCountFrameAnnouncementChannelButton_Click()
+function HeadCount:HeadCountFrameAnnouncementChannelButton_Click(self)
 	local channelButton = HeadCountFrameAnnouncementChannelButton
 	if (dewdrop:IsOpen(channelButton)) then
 		dewdrop:Close()
@@ -1904,7 +1904,7 @@ function HeadCount:HeadCountFrameAnnouncementChannelButton_Click()
 end
 
 -- ON CLICK: Raid announcement announce button
-function HeadCount:HeadCountFrameAnnouncementAnnounceButton_Click()
+function HeadCount:HeadCountFrameAnnouncementAnnounceButton_Click(self)
 	local typeString = HeadCountFrameAnnouncementTypeEditBoxButtonText:GetText()
 	local channelString = HeadCountFrameAnnouncementChannelEditBoxButtonText:GetText()
 	local channel = HeadCount.CHAT_CHANNELS[channelString]
@@ -1931,7 +1931,7 @@ function HeadCount:HeadCountFrameAnnouncementAnnounceButton_Click()
 end
 
 -- ON CLICK: Raid announcement cancel button
-function HeadCount:HeadCountFrameAnnouncementCancelButton_Click()
+function HeadCount:HeadCountFrameAnnouncementCancelButton_Click(self)
 	HeadCount:DisableModalFrame()
 end
 
